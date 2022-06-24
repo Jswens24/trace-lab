@@ -19,7 +19,13 @@ rollbar.log('Hello world!')
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-
+app.get('/madeUpEndpoint', () => {
+    try {
+        fakeFunction()
+    } catch (err) {
+        rollbar.error('Error!!')
+    }
+})
 
 
 const port = process.env.PORT || 4005;
