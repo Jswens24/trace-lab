@@ -17,7 +17,12 @@ var rollbar = new Rollbar({
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
 
-app.use(express.static(path.join(__dirname, "../public")));
+// app.use(express.static(path.join(__dirname, "../public")));
+
+app.get('/', (req, res) => {
+    rollbar.info('HTML servered successfully')
+    res.sendFile(path.join(__dirname, '/index.html'))
+})
 
 
 const port = process.env.PORT || 4005;
